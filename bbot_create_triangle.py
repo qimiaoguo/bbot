@@ -1,7 +1,9 @@
 # coding=utf8
-import market_data.market_data as md
+from __future__ import print_function
 
+import market_data.basic_data_dump as md
 
 if __name__ == '__main__':
-    print 'Hello world'
-    md.start_market_subscribe()
+    print('dump basic data')
+    md.basic_data_dump()
+
