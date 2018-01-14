@@ -1,4 +1,5 @@
 {
   "api_key": "your binance key",
-  "api_secret": "your binance secret"
+  "api_secret": "your binance secret",
+  "wss_endpoint": "wss://stream.binance.com:9443"
 }
