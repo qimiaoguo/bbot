@@ -41,8 +41,8 @@ def start_market_subscribe(symbol):
                                 on_error=on_error,
                                 on_close=on_close,
                                 on_open=on_open)
-    ws.run_forever(sslopt={"cert_reqs": ssl.CERT_NONE})
-
+    while True:
+        ws.run_forever(sslopt={"cert_reqs": ssl.CERT_NONE})
 
 
 if __name__ == '__main__':
