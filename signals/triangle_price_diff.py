@@ -24,10 +24,11 @@ def get_trade_pairs():
 
 
 class Triangle:
-    def __init__(self, symbol=None):
+    def __init__(self):
         self.trade_pairs = get_trade_pairs()
-        self.trade_triangles = self.prepare(symbol)
         self.price_map = dict()
+        self.max_diff = [0, None]
+        self.trade_triangles = list()
 
     def _get_trade_triangle(self, symbol_a, symbol_b, symbol_c):
         return [self.trade_pairs[(symbol_a, symbol_b)],
@@ -46,7 +47,7 @@ class Triangle:
             t_t.append(self._get_trade_triangle(symbol, a, b))
             t_t.append(self._get_trade_triangle(symbol, b, a))
         print(t_t)
-        return t_t
+        self.trade_triangles = t_t
 
     def update_price_map(self, ticker_price_list):
         for ticker_price in ticker_price_list:
@@ -64,9 +65,15 @@ class Triangle:
             price3 = self._get_best_price(triangle[2][0], triangle[2][1])
             if price1 and price2 and price3:
                 results.append(self._calc_diff([price1, price2, price3]))
-        results.sort(key=lambda x: x[0])
+        results = filter(lambda r: r[0] > 0, results)
+        results.sort(key=lambda x: x[0], reverse=True)
+        if len(results) > 0:
+            self.max_diff = results[0] if self.max_diff[0] < results[0][0] else self.max_diff
+        print('------statistics------')
         for result in results:
             print(result)
+        print('------max_price------')
+        print(self.max_diff)
 
     def _calc_diff(self, price_list):
         numerator = 1
@@ -88,4 +95,4 @@ class Triangle:
         else:
             price = ticker_price['b']
             quantity = ticker_price['B']
-        return side, ticker, price, quantity
+        return side, ticker, float(price), float(quantity), ticker_price['E']
