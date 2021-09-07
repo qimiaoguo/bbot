@@ -25,7 +25,7 @@ Mosek==8.1.30
 numpy==1.13.3
 pandas==0.21.0
 patsy==0.4.1
-Pillow==3.1.2
+Pillow==8.3.2
 protobuf==3.5.0.post1
 psutil==5.4.1
 pycrypto==2.6.1
