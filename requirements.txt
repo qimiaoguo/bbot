@@ -22,7 +22,7 @@ jmespath==0.9.3
 kombu==4.1.0
 MarkupSafe==1.0
 Mosek==8.1.30
-numpy==1.13.3
+numpy==1.22.0
 pandas==0.21.0
 patsy==0.4.1
 Pillow==3.1.2
